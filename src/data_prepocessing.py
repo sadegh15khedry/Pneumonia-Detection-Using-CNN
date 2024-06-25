@@ -1,18 +1,7 @@
 from sklearn.model_selection import train_test_split
 import os
-
-# def load_data(file_name):
-#     return pd.read_csv('../datasets/'+file_name)
-
-# def split_data(df, feature_column, label_column, test_size=.2, random_state=50):
-#     # x = df.drop(columns= [feature_column])
-#     # y = df.drop(columns= [label_column])
-#     return train_test_split(df[feature_column], df[label_column], test_size=test_size, random_state=random_state)
-
-# def preprocess_data(df):
-#     df = df.dropna()
-#     df.drop_duplicates(keep=False) 
-#     return df 
+import random
+import shutil
 
 def rename_images(image_dir, new_name_prefix, counting_number=0):
     for image_file in os.listdir(image_dir):
@@ -20,3 +9,27 @@ def rename_images(image_dir, new_name_prefix, counting_number=0):
         new_image_path = os.path.join(image_dir, new_name_prefix +'_'+ str(counting_number) + '.jpeg')
         os.rename(old_image_path, new_image_path)
         counting_number += 1
+        
+        
+def split_images_into_train_validation_test(raw_dirctory, target_directory, class_names, val_sizes, test_sizes):
+    for class_name in class_names:
+        src = raw_dirctory + str(class_name)+'/'
+        my_pics = os.listdir(path=src)
+        class_index =  class_names.index(class_name)
+        for i in range(test_sizes[class_index]):
+            pic_name = my_pics.pop(random.randrange(len(my_pics)))
+            shutil.copyfile(src=src+pic_name, dst=target_directory+'test/'+class_name+'/' + str(pic_name))
+        for i in range(val_sizes[class_index]):
+            pic_name = my_pics.pop(random.randrange(len(my_pics)))
+            shutil.copyfile(src=src+pic_name, dst=target_directory + 'val/'+class_name+'/' + str(pic_name))
+        for i in my_pics:
+            pic_name = i
+            shutil.copyfile(src=src+pic_name, dst=target_directory + 'train/'+class_name+'/' + str(pic_name))
+            
+
+def calculate_train_val_test_sizes(total_sizes_each_class, val_percetage, test_percetage):
+    val_size = [int(x * val_percetage) for x in  total_sizes_each_class]
+    test_size = [int(x * test_percetage) for x in  total_sizes_each_class]
+    train_size = [(x-y)- z for x, y, z in zip(total_sizes_each_class, val_size, test_size)]
+    return train_size, val_size, test_size
+    
