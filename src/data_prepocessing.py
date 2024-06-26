@@ -8,17 +8,17 @@ from PIL import Image
 sys.path.append(os.path.abspath('../src'))
 from utils import remove_image
 
-def resize_and_rename_images(root_directory, class_names, lenght, width):
+def resize_and_rename_images(source_directory,detination_directory , class_names, lenght, width):
     counter = 0
     for class_name in class_names:
-        src = root_directory + str(class_name)+'/'
+        src = source_directory + str(class_name)+'/'
         image_names = os.listdir(path=src)
         print(type(image_names))
         for image_name in image_names:
             print(src+image_name+'\n')
             image = cv2.imread(src+image_name)
             resized_image = cv2.resize(image, (lenght, width))
-            cv2.imwrite('../datasets/resized/'+class_name+'/'+class_name+'_'+str(counter)+'.jpeg', resized_image)
+            cv2.imwrite(detination_directory+class_name+'/'+class_name+'_'+str(counter)+'.jpeg', resized_image)
             counter += 1
                 
 
@@ -88,3 +88,17 @@ def remove_corrupt_images(root_directory, class_names):
                 removed_list.append(image_name)
                 
     return removed_list
+
+def convert_images_to_grayscale (source_root_directory, destination_root_directory, class_names):
+    for class_name in class_names:
+        image_names = os.listdir(source_root_directory+class_name)
+        for image_name in image_names:
+            image_source_path = source_root_directory+class_name+'/'+image_name
+            image_destination_path = destination_root_directory+class_name+'/'+image_name
+            print(image_source_path)
+            image = cv2.imread(image_source_path)
+            #converitg to grayscale
+            gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+            cv2.imwrite(image_destination_path, gray_image)
+            
+            
