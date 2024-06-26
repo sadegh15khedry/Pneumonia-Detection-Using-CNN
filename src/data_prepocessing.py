@@ -3,7 +3,10 @@ import os
 import random
 import shutil
 import cv2
-
+import sys
+from PIL import Image
+sys.path.append(os.path.abspath('../src'))
+from utils import remove_image
 
 def resize_and_rename_images(root_directory, class_names, lenght, width):
     counter = 0
@@ -53,4 +56,35 @@ def split_images_into_train_validation_test(raw_dirctory, target_directory, clas
             
 
     
+def is_image_corrupt(image_path):
+    #Checking with Pillow
+    try:
+        img = Image.open(image_path)
+        img.verify()
+    except (IOError, SyntaxError) as e:
+        print(f"Corrupt image detected with Pillow: {image_path} - {e}")
+        return True
+    
+    #Checking with cv2
+    try:
+        img = cv2.imread(image_path)
+        if img is None:
+            raise ValueError("Image is corrupt")
+    except Exception as e:
+        print(f"Corrupt image detected with OpenCV: {image_path} - {e}")
+        return True
 
+
+
+def remove_corrupt_images(root_directory, class_names):
+    removed_list = []
+    for class_name in class_names:
+        images_names = os.listdir(root_directory+'/'+class_name)
+        for image_name in images_names:
+            is_corrupt = is_image_corrupt(root_directory+'/'+class_name+'/'+image_name)
+            if is_corrupt == True:
+                print(image_name+' is corrupted and is gettig removed')
+                remove_image(root_directory+'/'+class_name+'/'+image_name)
+                removed_list.append(image_name)
+                
+    return removed_list

@@ -1,8 +1,8 @@
 import matplotlib.pyplot as plt
 import seaborn as sns
 import joblib
-import pandas as pd
-import csv
+import cv2
+import os
 
 def save_confution_matrix(cm, file_path):
     plt.figure(figsize=(10, 7))
@@ -28,3 +28,11 @@ def save_model(model, path):
 def load_model(path):
     loaded_model = joblib.load(path)
     return loaded_model
+
+def load_image(image_directory):
+    image = cv2.imread(image_directory)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) #converting BGR to RGB
+    return image
+
+def remove_image(image_path):
+    os.remove(image_path)
