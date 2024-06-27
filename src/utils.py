@@ -30,9 +30,33 @@ def load_model(path):
     return loaded_model
 
 def load_image(image_directory):
-    image = cv2.imread(image_directory)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) #converting BGR to RGB
+    image = cv2.imread(image_directory, cv2.IMREAD_GRAYSCALE)
+    # image = cv2.imread(image_directory)
+    # image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB) #converting BGR to RGB
     return image
 
 def remove_image(image_path):
     os.remove(image_path)
+    
+    
+def get_image_histogram(image):
+    # Calculate the image histogram
+    hist = cv2.calcHist([image], [0], None, [256], [0, 256])
+    # Normalize the image histogram 
+    hist /= hist.sum()
+    return hist
+
+def display_image(image, title, xlabel, ylabel, cmap='gray'):
+    plt.imshow(image, cmap=cmap)
+    plt.title(title)
+    xlabel= xlabel
+    ylabel= ylabel
+    plt.axis('off')
+    plt.show()
+    
+def display_histogram(hist, title, color, xlabel, ylabel):
+    plt.plot(hist, color=color)
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.show()

@@ -1,7 +1,8 @@
 import cv2
 import os
 from PIL import Image
-
+import numpy as np
+import matplotlib.pyplot as plt
 
 def get_avgrage_width_and_lenght(root_directory, class_names):
     dimentions = []
@@ -16,4 +17,35 @@ def get_avgrage_width_and_lenght(root_directory, class_names):
     avrage_width = sum(d[1] for d in dimentions) / len(dimentions)
     return avrage_lenght, avrage_width
 
+def get_image_intensity_statistics(image):
+    mean_intensity = np.mean(image)
+    std_intensity = np.std(image)
+    median_intensity = np.median(image)
+    return mean_intensity, std_intensity, median_intensity
 
+
+def print_intensity_statistics(mean_intensity, std_intensity, median_intensity):
+    print(f'Mean Intensity: {mean_intensity}')
+    print(f'Standard Deviation: {std_intensity}')
+    print(f'Median Intensity: {median_intensity}')
+    
+    
+def get_sifit_image(blurred_image):
+    sift = cv2.SIFT_create()
+    keypoints, descriptors = sift.detectAndCompute(blurred_image, None)
+    sift_image = cv2.drawKeypoints(blurred_image, keypoints, None)
+    return sift_image
+
+
+def get_harris_corners_image(blurred_image_float, image):
+    harris_corners = cv2.cornerHarris(blurred_image_float, 2, 3, 0.04)
+    harris_corners = cv2.dilate(harris_corners, None)
+    corner_image = image.copy()
+    corner_image[harris_corners > 0.01 * harris_corners.max()] = 255
+    return corner_image
+
+def get_orb_image(blurred_image, image):
+    orb = cv2.ORB_create()
+    keypoints_orb, descriptors_orb = orb.detectAndCompute(blurred_image, None)
+    orb_image = cv2.drawKeypoints(image, keypoints_orb, None)
+    return orb_image
