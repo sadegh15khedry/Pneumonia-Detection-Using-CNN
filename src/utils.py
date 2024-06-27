@@ -3,6 +3,7 @@ import seaborn as sns
 import joblib
 import cv2
 import os
+import numpy as np
 
 def save_confution_matrix(cm, file_path):
     plt.figure(figsize=(10, 7))
@@ -60,3 +61,29 @@ def display_histogram(hist, title, color, xlabel, ylabel):
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.show()
+    
+def display_scatter(x_data, y_data, labels, title, xlabel, ylabel):
+    plt.scatter(x_data,y_data, c=labels, cmap='viridis')
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.show()
+    
+def flatten_images(images):
+    flattened_images = []
+    for imgage in images:
+        flattened_images.append(imgage.flatten())
+    return np.array(flattened_images)
+
+
+def load_all_images(source_directory, class_names):
+    # Loading all the images
+    images = []
+    for class_name in class_names:
+        image_names = os.listdir(source_directory+class_name)
+        for image_name in image_names:
+            image = cv2.imread(source_directory+class_name+'/'+image_name)
+            images.append(image)
+            
+    return images
+          

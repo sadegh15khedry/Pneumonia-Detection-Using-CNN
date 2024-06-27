@@ -3,6 +3,8 @@ import os
 from PIL import Image
 import numpy as np
 import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from sklearn.cluster import KMeans
 
 def get_avgrage_width_and_lenght(root_directory, class_names):
     dimentions = []
@@ -49,3 +51,15 @@ def get_orb_image(blurred_image, image):
     keypoints_orb, descriptors_orb = orb.detectAndCompute(blurred_image, None)
     orb_image = cv2.drawKeypoints(image, keypoints_orb, None)
     return orb_image
+
+def reduce_dimensionality_for_clusterign(flattened_images, number_of_components):
+    pca = PCA(n_components=2)
+    reduced_data = pca.fit_transform(flattened_images)
+    return reduced_data 
+
+def apply_kmeans_clustering(reduced_data, number_of_clusters):
+    kmeans = KMeans(n_clusters=number_of_clusters)
+    kmeans.fit(reduced_data)
+    labels = kmeans.labels_ 
+    return labels 
+            
