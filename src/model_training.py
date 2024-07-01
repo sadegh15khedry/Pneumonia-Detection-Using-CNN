@@ -1,25 +1,24 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
-
+from tensorflow.keras.regularizers import l2
 
 def get_untrained_custom_model(imgage_width, imgage_height, optimizer='adam', loss='categorical_crossentropy', metrics=['accuracy']):
     model = Sequential()
     # Convolutional layer
-    model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(imgage_width, imgage_height, 3)))
-    model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(imgage_width, imgage_height, 3)))
-    #Pooling layer
-    model.add(MaxPooling2D(pool_size=(2, 2)))
-    #Pooling layer
+    model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(imgage_width, imgage_height, 3), kernel_regularizer=l2(0.001)))
+    model.add(Dropout(0.25))    
+    model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', input_shape=(imgage_width, imgage_height, 3), kernel_regularizer=l2(0.001)))
+    model.add(MaxPooling2D((2, 2)))
+    model.add(Dropout(0.25))    
     model.add(Flatten())
-    # First fully connected layer
-    model.add(Dense(units=128, activation='relu'))
-
-    # Optional: Add dropout for regularization
-    #model.add(Dropout(rate=0.5))
-
+    # Dense layers
+    model.add(Dense(units=64, activation='relu'))
+    model.add(Dropout(rate=0.5))
     # Output layer
     model.add(Dense(units=2, activation='softmax'))
+    
+    
     model.compile(optimizer=optimizer, loss=loss , metrics=metrics)
     return model
 

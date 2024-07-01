@@ -161,8 +161,7 @@ datasets/
 .conda/
 
 # Models
-.Models/
-.models
+models/
 
 # PyCharm
 #  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
