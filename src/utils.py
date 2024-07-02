@@ -4,6 +4,9 @@ import joblib
 import cv2
 import os
 import numpy as np
+from tensorflow.keras.models import load_model
+import tensorflow as tf
+
 
 def save_confution_matrix(cm, file_path):
     plt.figure(figsize=(10, 7))
@@ -25,13 +28,18 @@ def save_dataframe_as_csv(df, file_path):
 def save_model(model, path):
     model.save(path)
 
-def load_model(model, path):
-    model.load(path)
+def load_saved_model(path):
+    try:
+        model = tf.keras.models.load_model(path)
+        return model
+    except Exception as e:
+        print(f"Error loading model: {e}")
+        return None
     
 
-def load_model(path):
-    loaded_model = joblib.load(path)
-    return loaded_model
+# def load_model(path):
+#     loaded_model = joblib.load(path)
+#     return loaded_model
 
 def load_image(image_directory):
     image = cv2.imread(image_directory, cv2.IMREAD_GRAYSCALE)
