@@ -10,36 +10,37 @@ Pneumonia is a lung infection that causes inflammation in the air sacs, or alveo
 
 1. [Overview](#overview)
 2. [Installation](#installation)
-3. [Usage](#usage)
-4. [Training](#training)
-5. [Test Results](#test-results)
-6. [Contributing](#contributing)
-7. [License](#license)
+3. [Training](#training)
+4. [Test Results](#test-results)
+5. [Contributing](#contributing)
+6. [License](#license)
 
 ## Installation
-
 
 To set up the environment for running this project, follow these steps:
 
 ### Step 1: Clone the Repository
 
 Clone the repository to your local machine using Git:
-
+```bash
 git clone https://github.com/your_username/your_repository.git
 cd your_repository
+```
 
 ### Step 2: Create and Activate a Conda Environment (Optional but Recommended)
 
 If you prefer using Conda for managing environments, you can create a new Conda environment:
-
+```bash
 conda create --name pneumonia-env python=3.8
 conda activate pneumonia-env
+```
 
 ### Step 3: Install Dependencies
 
 Install the required packages using `pip` and the `requirements.txt` file provided:
-
+```bash
 pip install -r requirements.txt
+```
 
 This command will install all the necessary dependencies, including TensorFlow and other libraries required for the project.
 
@@ -50,8 +51,9 @@ You're now ready to run the project. Depending on your setup and the structure o
 ### Optional: GPU Support
 
 If you have a CUDA-enabled GPU, you can install TensorFlow GPU for faster computations:
-
+```bash
 pip install tensorflow-gpu==2.5.0
+```
 
 Make sure you have CUDA and cuDNN installed as per TensorFlow's requirements.
 
@@ -71,9 +73,6 @@ If you wish to contribute to the project or modify it for your own use, feel fre
 
 That's it! You should now have the project set up and ready to use on your local machine.
 
-## Usage
-
-Provide usage instructions and how to run the code for training and testing the CNN model.
 
 ## Training
 
@@ -81,9 +80,13 @@ Provide usage instructions and how to run the code for training and testing the 
 
 The CNN model was trained to detect pneumonia from chest X-ray images. The training process involved optimizing the model to achieve high accuracy on both training and validation datasets.
 
+
+
 ### Performance Metrics
 
 During training, the model reached 90% accuracy on both the training and validation datasets, demonstrating its ability to generalize well to unseen data.
+
+![Screenshot 2024-07-02 082713](https://github.com/sadegh15khedry/Pneumonia-Detection-Using-CNN/assets/90490848/adc989e2-bacf-4940-b4a0-2b9ae7e26151)
 
 
 ## Test Results
@@ -99,9 +102,12 @@ After training and evaluating the pneumonia detection model using chest X-ray im
    macro avg       0.49      0.49      0.49       877
 weighted avg       0.59      0.61      0.60       877
 
+
 Test accuracy: 0.9099201560020447   test_loss: 0.3045918047428131
 precision: 0.5941611958622947   recall: 0.6066134549600912
 f1: 0.6000544799045721
+
+![cm](https://github.com/sadegh15khedry/Pneumonia-Detection-Using-CNN/assets/90490848/25c3a822-f907-4fdf-b5c8-20abdf44f206)
 
 These results indicate the performance metrics achieved by the model on the test dataset, demonstrating its effectiveness in detecting pneumonia from X-ray images.
 
