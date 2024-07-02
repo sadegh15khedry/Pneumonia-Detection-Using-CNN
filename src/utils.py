@@ -8,14 +8,7 @@ from tensorflow.keras.models import load_model
 import tensorflow as tf
 
 
-def save_confution_matrix(cm, file_path):
-    plt.figure(figsize=(10, 7))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Blues')
-    plt.ylabel("Actual")
-    plt.xlabel("Predicted")
-    plt.savefig(file_path)
-    
-    
+ 
 def save_report(report, file_path):
     with open(file_path, 'w') as f:
         f.write(report)
@@ -36,10 +29,6 @@ def load_saved_model(path):
         print(f"Error loading model: {e}")
         return None
     
-
-# def load_model(path):
-#     loaded_model = joblib.load(path)
-#     return loaded_model
 
 def load_image(image_directory):
     image = cv2.imread(image_directory, cv2.IMREAD_GRAYSCALE)
@@ -97,4 +86,5 @@ def load_all_images(source_directory, class_names):
             images.append(image)
             
     return images
+          
           

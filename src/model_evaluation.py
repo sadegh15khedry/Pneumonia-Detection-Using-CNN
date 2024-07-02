@@ -1,8 +1,8 @@
-from sklearn.metrics import confusion_matrix
+from sklearn.metrics import confusion_matrix, classification_report, f1_score, precision_score, recall_score
 import tensorflow as tf
-import seaborn as sns
 import numpy as np
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def evaluate_model(model, test_dataset):
      # Get the true labels
@@ -15,10 +15,19 @@ def evaluate_model(model, test_dataset):
     
     test_loss, test_acc = model.evaluate(test_dataset)
     cm = confusion_matrix(true_labels, predicted_labels)
+    
+     # Calculate F1 score, precision, and recall
+    f1 = f1_score(true_labels, predicted_labels, average='weighted')
+    precision = precision_score(true_labels, predicted_labels, average='weighted')
+    recall = recall_score(true_labels, predicted_labels, average='weighted')
+    
+    report = classification_report(true_labels, predicted_labels, target_names=test_dataset.class_names)
+    print(report)
+    
     # predictions = model.predict(x_test)
     # report = classification_report(y_test, predictions)
     # cm = confusion_matrix(y_test, predictions)
-    return test_loss, test_acc, cm
+    return test_loss, test_acc, cm, true_labels, predicted_labels, f1, precision, recall
 
 
 def get_test_dataset(test_dir, image_width, image_height):
@@ -30,15 +39,12 @@ def get_test_dataset(test_dir, image_width, image_height):
     )
     return test_dataset
 
-def display_cofiution_matrix(cm, test_dataset):
-    # Display the confusion matrix
-    plt.figure(figsize=(10, 8))
+def display_and_save_confution_matrix(cm, test_dataset, file_path):
+    plt.figure(figsize=(10, 7))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', xticklabels=test_dataset.class_names, yticklabels=test_dataset.class_names)
     plt.xlabel('Predicted')
     plt.ylabel('True')
     plt.title('Confusion Matrix')
-    
-    # Saving the plots
-    plt.savefig('../results/training_validation_loss_and_accuracy.png')
-    
+    plt.savefig(file_path)
     plt.show()
+
