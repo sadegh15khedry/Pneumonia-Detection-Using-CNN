@@ -24,6 +24,9 @@ def save_dataframe_as_csv(df, file_path):
 
 def save_model(model, path):
     model.save(path)
+
+def load_model(model, path):
+    model.load(path)
     
 
 def load_model(path):
