@@ -11,7 +11,7 @@ Pneumonia is a lung infection that causes inflammation in the air sacs, or alveo
 1. [Overview](#overview)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [Training](#test-results)
+4. [Training](#training)
 5. [Test Results](#test-results)
 6. [Contributing](#contributing)
 7. [License](#license)
