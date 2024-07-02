@@ -1,6 +1,6 @@
 # Pneumonia Detection using CNN
 
-This repository contains code for training and evaluating a convolutional neural network (CNN) model to detect pneumonia from chest X-ray images.
+This repository contains code for training and evaluating a convolutional neural network (CNN) model to detect pneumonia from chest X-ray images. we trained the model using blow mentioned dataset and were able to reach 0.9099201560020447 accuracy.
 
 ## Overview
 
@@ -10,14 +10,19 @@ Pneumonia is a lung infection that causes inflammation in the air sacs, or alveo
 
 1. [Overview](#overview)
 2. [Installation](#installation)
-3. [Training](#training)
-4. [Test Results](#test-results)
-5. [Contributing](#contributing)
-6. [License](#license)
+3. [Folder Structure](#folder-structure)
+4. [Training](#training)
+5. [Test Results](#test-results)
+6. [Further Improvements](#further-improvements)
+7. [Contributing](#contributing)
+9. [License](#license)
 
 ## Installation
 
 To set up the environment for running this project, follow these steps:
+
+### Step 1: Dataset
+Get the dataset of the project form the link ( https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia ).
 
 ### Step 1: Clone the Repository
 
@@ -52,6 +57,7 @@ You're now ready to run the project. Depending on your setup and the structure o
 
 If you have a CUDA-enabled GPU, you can install TensorFlow GPU for faster computations:
 ```bash
+pip install cuda==11.2.2 cudnn==8.1.0
 pip install tensorflow-gpu==2.5.0
 ```
 
@@ -67,24 +73,45 @@ Explore the project files and directories to understand the structure and functi
 - `data_exploration.py`: Python script for exploring the dataset.
 - `model_deployment.ipynb`: Notebook for deploying the trained model.
 
-### Step 6: Contribute (Optional)
 
-If you wish to contribute to the project or modify it for your own use, feel free to fork the repository and create pull requests with your changes.
+## Folder Structure
 
-That's it! You should now have the project set up and ready to use on your local machine.
+The project folder structure is organized as follows:
+
+- docs/
+- results/
+- src/
+- notebooks/
+
+### docs
+Contains project documentation.
+
+### results
+Stores experimental results and trained models.
+
+### src
+Contains source code for the pneumonia detection model.
+
+### notebooks
+Includes Jupyter notebooks used for experimentation and analysis.
+
+## Results
+
+Detailed results and performance metrics are stored in the `results/` directory.
+
 
 
 ## Training
 
 ### Model Training Details
 
-The CNN model was trained to detect pneumonia from chest X-ray images. The training process involved optimizing the model to achieve high accuracy on both training and validation datasets.
+The CNN model was trained to detect pneumonia from chest X-ray images. The training process involved optimizing the model to achieve high accuracy on both training and validation datasets. for generalization of our model, data augmentation was added and helped reducing the difrence of train and validation accuracy from 8 to near 0.
 
 
 
 ### Performance Metrics
 
-During training, the model reached 90% accuracy on both the training and validation datasets, demonstrating its ability to generalize well to unseen data.
+During training, the model reached 92% accuracy on both the training and validation datasets, demonstrating its ability to generalize well to unseen data. 
 
 ![Screenshot 2024-07-02 082713](https://github.com/sadegh15khedry/Pneumonia-Detection-Using-CNN/assets/90490848/adc989e2-bacf-4940-b4a0-2b9ae7e26151)
 
@@ -111,10 +138,19 @@ f1: 0.6000544799045721
 
 These results indicate the performance metrics achieved by the model on the test dataset, demonstrating its effectiveness in detecting pneumonia from X-ray images.
 
+## Further Improvements
+- Implement transfer learning with pre-trained models.
+- Explore ensemble methods for improved performance.
+- Optimize hyperparameters for better precision and recall.
+
+
+
+
 ## Contributing
 
-Explain how others can contribute to your project.
+If you wish to contribute to the project or modify it for your own use, feel free to fork the repository and create pull requests with your changes.
+
 
 ## License
 
-Include information about the project's license.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
