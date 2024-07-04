@@ -78,10 +78,25 @@ Explore the project files and directories to understand the structure and functi
 
 The project folder structure is organized as follows:
 
-- docs/
-- results/
-- src/
-- notebooks/
+Pneumonia-Detection-Using-CNN/
+│
+├── data/
+│   ├── train/
+│   ├── test/
+│   └── val/
+├── models/
+│   └── cnn_model.h5
+├── notebooks/
+│   └── pneumonia_detection.ipynb
+├── src/
+│   ├── data_loader.py
+│   ├── model.py
+│   └── train.py
+├── results/
+│   ├── accuracy.png
+│   └── loss.png
+├── README.md
+└── environment.yml
 
 ### docs
 Contains project documentation.
