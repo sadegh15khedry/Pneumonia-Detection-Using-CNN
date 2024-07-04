@@ -24,15 +24,15 @@ To set up the environment for running this project, follow these steps:
 ### Step 1: Dataset
 Get the dataset of the project form the link ( https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia ).
 
-### Step 1: Clone the Repository
+### Step 2: Clone the Repository
 
 Clone the repository to your local machine using Git:
 ```bash
 git clone https://github.com/your_username/your_repository.git
-cd your_repository
+cd Pneumonia-Detection-Using-CNN
 ```
 
-### Step 2: Create and Activate a Conda Environment (Optional but Recommended)
+### Step 3: Create and Activate a Conda Environment (Optional but Recommended)
 
 If you prefer using Conda for managing environments, you can create a new Conda environment:
 ```bash
@@ -40,7 +40,7 @@ conda create --name pneumonia-env python=3.8
 conda activate pneumonia-env
 ```
 
-### Step 3: Install Dependencies
+### Step 4: Install Dependencies
 
 Install the required packages using `pip` and the `requirements.txt` file provided:
 ```bash
@@ -49,7 +49,7 @@ pip install -r requirements.txt
 
 This command will install all the necessary dependencies, including TensorFlow and other libraries required for the project.
 
-### Step 4: Run the Project
+### Step 5: Run the Project
 
 You're now ready to run the project. Depending on your setup and the structure of the project, you may run different scripts or notebooks for data preprocessing, model training, evaluation, etc.
 
@@ -63,7 +63,7 @@ pip install tensorflow-gpu==2.5.0
 
 Make sure you have CUDA and cuDNN installed as per TensorFlow's requirements.
 
-### Step 5: Explore the Project
+### Step 6: Explore the Project
 
 Explore the project files and directories to understand the structure and functionality:
 
