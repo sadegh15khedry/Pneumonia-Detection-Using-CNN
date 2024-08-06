@@ -77,7 +77,7 @@ Explore the project files and directories to understand the structure and functi
 ## Folder Structure
 
 The project folder structure is organized as follows:
-
+```
 Pneumonia-Detection-Using-CNN/
 │
 ├── data/
@@ -97,7 +97,7 @@ Pneumonia-Detection-Using-CNN/
 │   └── loss.png
 ├── README.md
 └── environment.yml
-
+```
 ### docs
 Contains project documentation.
 
