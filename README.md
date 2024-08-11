@@ -1,6 +1,6 @@
 # Pneumonia Detection using CNN
 
-This repository contains code for training and evaluating a convolutional neural network (CNN) model to detect pneumonia from chest X-ray images. we trained the model using blow mentioned dataset and were able to reach 0.9099201560020447 accuracy.
+This repository contains code for training and evaluating a convolutional neural network (CNN) model to detect pneumonia from chest X-ray images. we trained the model using blow mentioned dataset and were able to reach 90% accuracy.
 
 ## Overview
 
@@ -134,7 +134,7 @@ During training, the model reached 92% accuracy on both the training and validat
 ## Test Results
 
 After training and evaluating the pneumonia detection model using chest X-ray images, the following test results were obtained:
-
+```
              precision    recall  f1-score   support
 
       Normal       0.25      0.22      0.24       237
@@ -143,11 +143,13 @@ After training and evaluating the pneumonia detection model using chest X-ray im
     accuracy                           0.61       877
    macro avg       0.49      0.49      0.49       877
 weighted avg       0.59      0.61      0.60       877
+```
 
-
-Test accuracy: 0.9099201560020447   test_loss: 0.3045918047428131
-precision: 0.5941611958622947   recall: 0.6066134549600912
-f1: 0.6000544799045721
+- Test accuracy: 0.90
+- Test_loss: 0.30 
+- Precision: 0.59
+- Recall: 0.60
+- F1: 0.60
 
 ![cm](https://github.com/sadegh15khedry/Pneumonia-Detection-Using-CNN/assets/90490848/25c3a822-f907-4fdf-b5c8-20abdf44f206)
 
